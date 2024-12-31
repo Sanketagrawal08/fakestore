@@ -36,9 +36,9 @@ const Cart = () => {
  
   return (
     <div className="w-full min-h-screen bg-gray-100 p-5">
-      <div className='flex items-center justify-evenly'>
-      <h1 className="text-2xl font-bold text-center mb-5">Your Cart</h1>
-      <button onClick={clearHandler} className='bg-[crimson] text-white px-2 py-1 rounded-lg active:scale-105'>Clear All</button>
+      <div id='kuchtoh' className='flex items-center  justify-evenly'>
+      <h1 id='kuchtoh2' className="text-2xl font-bold text-center mb-5">Your Cart 🛒</h1>
+      <button onClick={clearHandler} className='bg-[crimson] text-white px-2 py-1 rounded-lg active:scale-105'>Clear All </button>
       </div>
       <div className="space-y-6 w-3/4 mx-auto">
         {cart.map((item) => (
@@ -58,11 +58,11 @@ const Cart = () => {
           </div>
         ))}
         <div className="text-right mt-4 fixed bottom-0 right-0 bg-gray-300 p-4">
-          <h2 className="text-lg font-bold">Total: ${calculateTotal()}</h2>
+          <h2 className="text-lg font-bold"> 💲 {calculateTotal()} <span className='text-[1vw] kuch3'>only</span></h2>
         </div>
         <a href="/" className='fixed bottom-0 left-0'>
           <button className="bg-green-600 text-white p-4 font-bold hover:bg-green-800 transition mt-5">
-            Continue Shopping
+            Continue Shopping 
           </button>
         </a>
       </div>

@@ -91,16 +91,16 @@ const ProductList = () => {
   } else {
     return (
       <div style={myStyle} className="w-full min-h-screen bg-gray-200 p-5">
-        <div className='flex items-center justify-between p-2'>
-          <h1 className="text-2xl font-bold text-center mb-5">Product List <i className='ri-arrow-right-line'></i></h1>
-          <input 
+        <div id='res' className='flex items-center justify-between p-2'>
+          <h1 id='responsive1' className="text-2xl font-bold text-center mb-5">Product List <i className='ri-arrow-right-line'></i></h1>
+          <input id='responsive2' 
             value={inputValue} 
             onChange={handleInputChange} 
             type='search' 
             className='p-2 rounded-lg text-amber-900 border-2 outline-none border-amber-200 focus:border-amber-600' 
             placeholder='Search by name'
           />
-          <button className='px-2 py-1 rounded-md bg-green-800 text-white' onClick={toggleStyle}>{btnText}</button>
+          <button id='responsive3' className='px-2 py-1 rounded-md bg-green-800 text-white' onClick={toggleStyle}>{btnText}</button>
         </div>
         <div className="flex flex-wrap justify-evenly pt-8 gap-4">
           {filteredProducts.map((product) => (

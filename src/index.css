@@ -41,5 +41,42 @@
   }
   .cuticon{
     font-size: 5vw;
+    color: crimson;
+  }
+  #res{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  #responsive1{
+    white-space: nowrap;
+    font-size: 3vw;
+    margin: 0px 0px;
+  }
+  #responsive2{
+    width: 30%;
+    padding: 0px 0px;
+    font-size: 3vw;
+  }
+  #title{
+    font-size: 3.5vw;
+  }
+  #des{
+    color: rgb(63, 58, 58);
+    font-size: 2.5vw;
+    text-align: center;
+  }
+  #kuchtoh{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  #kuchtoh2{
+    margin: 0;
+  }
+  .kuch3{
+    font-size: 3vw;
+    color: rgb(15, 109, 35);
   }
 } 
