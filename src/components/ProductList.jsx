@@ -7,8 +7,9 @@ const ProductList = () => {
   const [loading, setLoading] = useState(true);
   const [inputValue, setInputValue] = useState('');
 const [addedMessage, setAddedMessage] = useState(''); 
+
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    setInputValue(event.target.value)
   
   };
   
@@ -115,14 +116,17 @@ const [addedMessage, setAddedMessage] = useState('');
             value={inputValue} 
             onChange={handleInputChange} 
             type='search' 
-            className='p-2 rounded-lg text-amber-900 border-2 outline-none border-amber-200 focus:border-amber-600' 
-            placeholder='Search by name'
+            className='p-2 px-3 rounded-full text-amber-900 border-2 outline-none border-amber-200 focus:border-amber-600' 
+            placeholder=' Search by name'
           />
           <button id='responsive3' className='px-2 py-1 rounded-md bg-green-800 text-white' onClick={toggleStyle}>{btnText}</button>
         </div>
         <div className="flex flex-wrap justify-evenly pt-8 gap-4">
           {filteredProducts.map((product) => (
             <div key={product.id} style={myStyle} className="card flex flex-col justify-center items-center bg-white shadow-md w-[30vw] h-[50vh] gap-4 rounded-lg p-4">
+             <div className='flex justify-end items-end  w-full px-2'>
+              <Link to="/cart" className=' rounded-full p-1 border-2 border-zinc-200' >🛒</Link>
+             </div>
               <img
                 className="w-36 h-36 object-contain rounded-lg"
                 src={product.image}
@@ -134,7 +138,7 @@ const [addedMessage, setAddedMessage] = useState('');
                 <div className="flex gap-2">
                   <Link to={`/product/${product.id}`}>
                     <button className="bg-amber-600 text-white py-1 px-3 rounded hover:bg-amber-700 transition active:scale-95">
-                      View Details
+                      View More
                     </button>
                   </Link>
                   <button

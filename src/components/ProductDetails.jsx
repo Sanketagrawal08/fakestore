@@ -30,8 +30,8 @@ const ProductDetails = () => {
         );
       } else{
         return (
-          <div id='col' className='flex justify-center p-4'>
-            <div className='flex justify-evenly w-auto'>
+          <div id='col' className='flex gap-4 justify-center p-4'>
+            <div id='krke' className='flex justify-evenly w-[50vw]'>
                <div className='carddetails flex flex-col p-2 border-2 border-yellow-950'>
               <div className='flex justify-start items-start'>
                <Link to="/"><i className='cuticon ri-close-line text-black text-[2vw] active:scale-90 hover:text-gray-500'></i></Link>

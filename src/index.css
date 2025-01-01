@@ -50,12 +50,12 @@
   }
   #responsive1{
     white-space: nowrap;
-    font-size: 3vw;
+    font-size: 3.2vw;
     margin: 0px 0px;
   }
   #responsive2{
     width: 30%;
-    padding: 0px 0px;
+    padding: 5px 5px;
     font-size: 3vw;
   }
   #title{
@@ -71,6 +71,7 @@
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 15px;
+    
   }
   #kuchtoh2{
     margin: 0;
@@ -82,9 +83,15 @@
   #col{
     display: flex;
     flex-direction: column;
+    
   }
   #kuch4{
     margin-top: 2vh;
     width: auto;
+  }
+  
+  #krke{
+    width: auto;
+    background-color: rgb(251, 248, 240);
   }
 } 
