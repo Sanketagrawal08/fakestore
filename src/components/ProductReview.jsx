@@ -18,14 +18,21 @@ const ProductReviews = ({ productId }) => {
   const handleSubmitReview = () => {
     if (!newReview || !rating || !username) return alert('Please enter a review , rating and your name');
 
+    const reviewDate = new Date();
+
+    const dateString = reviewDate.toLocaleString('en-US',{weekday: 'long', year: 'numeric', month: 'long',day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'})
+   
+
     const updatedReviews = [
       ...reviews,
-      { text: newReview, rating ,username}
+      { text: newReview, rating ,username,date: dateString}
     ];
 
     setReviews(updatedReviews); // Update state
     setNewReview(''); // Reset input
-    setRating(); // Reset rating
+    setRating(''); // Reset rating
     setUsername('')
 
     // Store reviews in local storage for persistence
@@ -35,7 +42,7 @@ const ProductReviews = ({ productId }) => {
 
   return (
   
-    <div id='kuch4' className='w-[30vw]  bg-white border-2 border-gray-300 p-6 max-w-2xl mx-auto shadow-lg'>
+    <div id='kuch4' className='w-[30vw]  bg-white border-2 border-gray-300 p-6 max-w-2xl gap-2 mx-auto shadow-lg'>
   <h3 className='text-center font-mono text-2xl text-gray-700 mb-4'>Reviews 📝</h3>
 
   <div className='border-t-2 border-b-2 border-gray-200 py-4'>
@@ -86,10 +93,11 @@ const ProductReviews = ({ productId }) => {
   <div className='mt-8'>
     {reviews.length > 0 ? (
       reviews.map((review) => (
-        <div key={review.id} className="border-b-2 bg-[#d7d9e1] p-2 border-gray-200 py-4 shadow-lg">
+        <div key={review.id} className="border-b-2 bg-[#eeeeee] p-2 border-gray-200 py-4 shadow-lg">
           <h1 className="text-gray-800 font-bold"><span className='font-semibold text-gray-700'>Name:</span> {review.username}</h1>
           <p className="text-gray-700 mb-2">{review.text}</p>
           <span className="text-yellow-500">Rating: {review.rating} ⭐</span>
+          <p className='text-sm text-black font-medium '><span className='font-normal text-gray-500'>Submitted on:</span> {review.date}</p>
         </div>
       ))
     ) : (
