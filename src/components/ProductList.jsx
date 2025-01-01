@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import Cart from './Cart';
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [inputValue, setInputValue] = useState('');
-
+const [addedMessage, setAddedMessage] = useState(''); 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
-    console.log(inputValue);
+  
   };
-
+  
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
@@ -30,16 +30,34 @@ const ProductList = () => {
   }, []);
 
   const clickCart = (itemAaya) => {
-    const updatedCart = [...cart, itemAaya];
-    setCart(updatedCart);
-    localStorage.setItem('cart',JSON.stringify(updatedCart));
-  };
+    const existingItem = cart.find((item) => item.id === itemAaya.id); 
+    
+    if (existingItem) {
 
+      const updatedCart = cart.map((item) =>
+        item.id === itemAaya.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      setCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    } else {
+
+      const updatedCart = [...cart, { ...itemAaya, quantity: 1 }];
+      setCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+
+    setAddedMessage('Added Successfully 😊');
+    setTimeout(() => {
+      setAddedMessage('');
+    },500);
+    
+  };
 
   const filteredProducts = products.filter(product =>
     product.title.toLowerCase().includes(inputValue.toLowerCase())
   );
-
 
   const [myStyle,setmyStyle] = useState(()=>{
     const savedTheme = localStorage.getItem('theme')
@@ -56,19 +74,19 @@ const ProductList = () => {
     };
   })
   const [btnText, setbtnText] = useState(()=>{
-   return localStorage.getItem('theme')==='dark' ? 'Enable Light Mode' : 'Enable Dark Mode'
+  return localStorage.getItem('theme')==='dark' ? 'Enable Light Mode' : 'Enable Dark Mode'
   })
 
   let toggleStyle =()=>{
-     if(myStyle.color === 'white'){
+    if(myStyle.color === 'white'){
       setmyStyle({
         color:'black',
         backgroundColor:'white',
-         border: 'none'
+        border: 'none'
       })
       setbtnText('Enable Dark Mode');
       localStorage.setItem('theme','light')
-     } else{
+    } else{
         setmyStyle({
           color:'white',
           backgroundColor:'black',
@@ -76,7 +94,7 @@ const ProductList = () => {
         })
         setbtnText('Enable Light Mode');
         localStorage.setItem('theme','dark')
-     }
+    }
   }
 
   if (loading) {
@@ -120,8 +138,9 @@ const ProductList = () => {
                     </button>
                   </Link>
                   <button
+                  
                     onClick={() => {
-                      clickCart(product);
+                      clickCart(product); 
                     }}
                     className="bg-blue-600 text-white active:scale-95 py-1 px-3 rounded hover:bg-blue-800 transition" >
                     Add To Cart
@@ -131,9 +150,17 @@ const ProductList = () => {
             </div>
           ))}
         </div>
+
+        {addedMessage ? (
+  <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-green-600 text-white py-2 px-4 rounded">
+    {addedMessage}
+  </div>
+) : null}
+
+        
       </div>
     );
   }
 };
 
-export default ProductList;
+export default ProductList

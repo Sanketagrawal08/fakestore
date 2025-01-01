@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ProductReviews from './ProductReview';
 
 const ProductDetails = () => {
 
@@ -29,19 +30,26 @@ const ProductDetails = () => {
         );
       } else{
         return (
-          <div className='flex justify-evenly mt-16 p-4'>
+          <div id='col' className='flex justify-center p-4'>
+            <div className='flex justify-evenly w-auto'>
                <div className='carddetails flex flex-col p-2 border-2 border-yellow-950'>
               <div className='flex justify-start items-start'>
                <Link to="/"><i className='cuticon ri-close-line text-black text-[2vw] active:scale-90 hover:text-gray-500'></i></Link>
               </div>
-              <div id='gap' className='flex flex-col items-center justify-center gap-2'>
-              <img className='w-[17vw]' src={product.image} alt={product.title} />
-              <h1 id='title' className='text-2xl'>{product.title}</h1>
-            <p id='des' className='text-[1vw] text-gray-600'>{product.description}</p>
-            <p className='font-semibold'><span className='text-gray-800'>Price:</span> ${product.price}</p>
-            <p>Category: {product.category}</p>
+              <div id='gap' className='flex flex-col items-center justify-center gap-3'>
+                <img className='w-[17vw]' src={product.image} alt={product.title} />
+                <h1 id='title' className='text-2xl'>{product.title}</h1>
+                <p id='des' className='text-[1vw] text-center text-gray-600'>{product.description}</p>
+                <p className='font-semibold'><span className='text-gray-800'>Price:</span> ${product.price}</p>
+                <p>Category: {product.category}</p>
               </div>
+              
               </div>
+             
+          </div>
+          <div>
+          <ProductReviews productId={product.id} />
+          </div>
           </div>
         )
       }

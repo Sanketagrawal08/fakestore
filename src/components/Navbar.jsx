@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Cart from './Cart'
+
 const Navbar = (cart) => {
 
+  
+  
+  
   return (
     <div className="nav flex justify-between items-center bg-[#333333] text-white p-6 shadow-lg ">
       <h1 className="text-3xl font-bold text-[#FFBF00]"> <i className='ri-reactjs-fill text-white'></i> E-commerce</h1>  {/* Golden color for brand text */}

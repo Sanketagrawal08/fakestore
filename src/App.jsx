@@ -7,10 +7,14 @@ import Navbar from './components/Navbar'
 import Cart from './components/Cart'
 const App = () => {
 
+ 
+ 
   return (
 
+    
+
     <div>
-      <Navbar   />
+      <Navbar/>
       <Routes>
         <Route path='/' element = {<ProductList/>}></Route>
         <Route path='/product/:id' element={<ProductDetails/>}></Route>

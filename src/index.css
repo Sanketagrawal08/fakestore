@@ -79,4 +79,12 @@
     font-size: 3vw;
     color: rgb(15, 109, 35);
   }
+  #col{
+    display: flex;
+    flex-direction: column;
+  }
+  #kuch4{
+    margin-top: 2vh;
+    width: auto;
+  }
 } 
