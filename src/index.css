@@ -27,7 +27,11 @@
   }
 
 @media (max-width: 600px){
+  body{
+    width: 100vw;
+  }
   .nav{
+    width: 100vw;
     display: flex;
     flex-direction: column;
   }

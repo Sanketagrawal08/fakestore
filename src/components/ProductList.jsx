@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Cart from './Cart';
+import Categories from './Categories';
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [inputValue, setInputValue] = useState('');
 const [addedMessage, setAddedMessage] = useState(''); 
+const [categories, setCategories] = useState([])
+const [selectedCategory, setSelectedCategory] = useState('');
+
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value)
@@ -22,12 +26,18 @@ const [addedMessage, setAddedMessage] = useState('');
   });
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await axios.get('https://fakestoreapi.com/products');
+    const fetchProductsandCategories = async () => {
+      const [response,categoriesResponse] = await Promise.all([
+        axios.get('https://fakestoreapi.com/products'),
+        axios.get('https://fakestoreapi.com/products/categories')
+      ]);
+
       setProducts(response.data);
+      setCategories(categoriesResponse.data)
       setLoading(false);
+
     };
-    fetchProducts();
+    fetchProductsandCategories();
   }, []);
 
   const clickCart = (itemAaya) => {
@@ -56,9 +66,22 @@ const [addedMessage, setAddedMessage] = useState('');
     
   };
 
-  const filteredProducts = products.filter(product =>
-    product.title.toLowerCase().includes(inputValue.toLowerCase())
-  );
+
+  
+  const filteredProducts = products.filter((product) => {
+    let matchesCategory = true; 
+    if (selectedCategory) {
+      matchesCategory = product.category === selectedCategory; 
+    }
+  
+    const matchesSearch = product.title
+      .toLowerCase()
+      .includes(inputValue.toLowerCase());
+  
+    return matchesCategory && matchesSearch; 
+  });
+  
+  
 
   const [myStyle,setmyStyle] = useState(()=>{
     const savedTheme = localStorage.getItem('theme')
@@ -121,8 +144,10 @@ const [addedMessage, setAddedMessage] = useState('');
           />
           <button id='responsive3' className='px-2 py-1 rounded-md bg-green-800 text-white' onClick={toggleStyle}>{btnText}</button>
         </div>
-        <div className="flex flex-wrap justify-evenly pt-8 gap-4">
-          {filteredProducts.map((product) => (
+        <div className="flex flex-col flex-wrap border-t-2 pt-10 border-amber-800 ">
+        <div><Categories categories = {categories} selectedCategory={selectedCategory} onCategorySelect = {setSelectedCategory} /></div>
+         <div className='flex flex-wrap justify-evenly gap-y-16 pt-4'>
+         {filteredProducts.map((product) => (
             <div key={product.id} style={myStyle} className="card flex flex-col justify-center items-center bg-white shadow-md w-[30vw] h-[50vh] gap-4 rounded-lg p-4">
              <div className='flex justify-end items-end  w-full px-2'>
               <Link to="/cart" className=' rounded-full p-1 border-2 border-zinc-200' >🛒</Link>
@@ -153,6 +178,7 @@ const [addedMessage, setAddedMessage] = useState('');
               </div>
             </div>
           ))}
+         </div>
         </div>
 
         {addedMessage ? (
