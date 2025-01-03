@@ -47,15 +47,48 @@
     font-size: 5vw;
     color: crimson;
   }
+  #searchInput{
+    width: 18vw;
+  }
+  #nice{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #searchInput::placeholder{
+    font-size: auto
+  }
+  #select1{
+    width: auto;
+  }
+  
+  #sele{
+    width: auto;
+  }
   #res{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
   }
+  #for{
+    margin-top: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid gray;
+  }
   #responsive1{
     white-space: nowrap;
     font-size: 3.2vw;
     margin: 0px 0px;
+  }
+  #ehading{
+    font-size: 4.5vw;
+  }
+  #ehading2{
+    font-size: 4.5vw;
+  }
+  .cut{
+    font-size: 7vw;
   }
   #responsive2{
     width: 30%;

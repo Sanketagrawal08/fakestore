@@ -28,11 +28,19 @@ const ProductList = () => {
       price: item.price,
       image: item.image,
     }
-     const savedWishlist = JSON.parse(localStorage.getItem('wishlist')) || []
-    const updatedWishlist = [...savedWishlist,itemtoSave]
-    localStorage.setItem('wishlist',JSON.stringify(updatedWishlist));
-    alert("Added To Wishlist");
     
+     const savedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+     const isAlreadyAdded = savedWishlist.some(wishItem => wishItem.id === item.id)
+     
+     if (isAlreadyAdded) {
+      alert("Item Already Added")
+     } else{
+      const updatedWishlist = [...savedWishlist,itemtoSave]
+      localStorage.setItem('wishlist',JSON.stringify(updatedWishlist));
+      alert("Added To Wishlist");
+     }
+
   }
 
   const [cart, setCart] = useState(() => {
@@ -97,7 +105,7 @@ const ProductList = () => {
     if (sortOption === "high-to-low") {
       return b.price - a.price;
     } else if (sortOption === "low-to-high") {
-      return a.price - b.price; // Sort ascending by price
+      return a.price - b.price; // Sort ascending
     } else if (sortOption === "popular") {
       return b.price - a.price;
     }
@@ -179,14 +187,14 @@ const ProductList = () => {
           </button>
         </div>
         <div className="flex flex-col flex-wrap border-t-2 pt-10 border-amber-800 ">
-          <div className="flex justify-evenly items-center">
+          <div id="nice" className="flex justify-evenly items-center">
             <Categories
               myStyle={myStyle}
               categories={categories}
               selectedCategory={selectedCategory}
               onCategorySelect={setSelectedCategory}
             />
-            <SortDropdown
+            <SortDropdown 
               myStyle={myStyle}
               sortOption={sortOption}
               onSortChange={handleSortChange}
