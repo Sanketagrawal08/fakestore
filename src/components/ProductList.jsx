@@ -31,7 +31,7 @@ const ProductList = () => {
      const savedWishlist = JSON.parse(localStorage.getItem('wishlist')) || []
     const updatedWishlist = [...savedWishlist,itemtoSave]
     localStorage.setItem('wishlist',JSON.stringify(updatedWishlist));
-    alert("added to wishlist");
+    alert("Added To Wishlist");
     
   }
 
@@ -187,6 +187,7 @@ const ProductList = () => {
               onCategorySelect={setSelectedCategory}
             />
             <SortDropdown
+              myStyle={myStyle}
               sortOption={sortOption}
               onSortChange={handleSortChange}
             />
@@ -201,7 +202,7 @@ const ProductList = () => {
                 <div className="flex justify-between items-end  w-full px-2">
                   <div><i onClick={()=>{
                     wishlistHandler(product)
-                  }} className="ri-heart-line text-2xl text-red-600"></i></div>
+                  }} className="ri-heart-line cursor-pointer text-2xl text-red-600"></i></div>
                   <div><Link
                     to="/cart"
                     className=" rounded-full p-1 border-2 border-zinc-200"

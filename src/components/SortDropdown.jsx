@@ -1,11 +1,12 @@
 import React from "react";
 
-const SortDropdown = ({ sortOption, onSortChange }) => {
+const SortDropdown = ({ sortOption, onSortChange,myStyle }) => {
   return (
     <div className="flex items-center space-x-3">
-      <label className="text-gray-700 font-semibold">Sort By:</label>
+      <label className=" font-semibold">Sort By:</label>
       <select
         value={sortOption}
+        style={myStyle}
         onChange={(e) => onSortChange(e.target.value)}
         className="px-4 py-2 bg-white border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 hover:bg-gray-50 transition duration-300 ease-in-out"
       >

@@ -9,6 +9,8 @@ import Wishlist from "./components/Wishlist";
 
 
 const App = () => {
+  
+
   return (
     <div>
       <Navbar />
@@ -16,7 +18,8 @@ const App = () => {
         <Route path="/" element={<ProductList />}></Route>
         <Route path="/product/:id" element={<ProductDetails />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/wishlist" element = {<Wishlist/>}></Route>
+        <Route path="/wishlist" element={<Wishlist  />} />
+
       </Routes>
     </div>
   );
