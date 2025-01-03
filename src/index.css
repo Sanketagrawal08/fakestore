@@ -30,6 +30,17 @@
   body{
     width: 100vw;
   }
+  #hamburger{
+    display: block;
+  }
+  #head{
+    font-size: 5vw;
+    border-bottom: 1px solid black;
+    margin-bottom: 2vh;
+  }
+  #head2{
+    font-size: 4vw;
+  }
   .nav{
     width: 100vw;
     display: flex;
