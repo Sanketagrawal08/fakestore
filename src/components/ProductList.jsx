@@ -57,7 +57,6 @@ const ProductList = () => {
         axios.get("https://fakestoreapi.com/products"),
         axios.get("https://fakestoreapi.com/products/categories"),
       ]);
-
       setProducts(response.data);
       setCategories(categoriesResponse.data);
       setLoading(false);
@@ -67,13 +66,15 @@ const ProductList = () => {
 
   const clickCart = (itemAaya) => {
     const existingItem = cart.find((item) => item.id === itemAaya.id);
-
+    
     if (existingItem) {
-      const updatedCart = cart.map((item) =>
-        item.id === itemAaya.id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      );
+      const updatedCart = cart.map((item) => {
+        if (item.id === itemAaya.id) {
+          return { ...item, quantity: item.quantity + 1 };
+        } else {
+          return item;
+        }
+      });
       setCart(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     } else {
@@ -81,14 +82,15 @@ const ProductList = () => {
       setCart(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
-
+  
     setAddedMessage("Added Successfully 😊");
     setTimeout(() => {
       setAddedMessage("");
     }, 500);
   };
-
+  
   const filteredProducts = products.filter((product) => {
+    
     let matchesCategory = true;
     if (selectedCategory) {
       matchesCategory = product.category === selectedCategory;

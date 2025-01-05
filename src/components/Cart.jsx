@@ -2,25 +2,29 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  // State for managing cart items
+  // State for managing cartttt
   const [cart, setCart] = useState(() => {
-    // Initialize cart from localStorage
+    
     const savedCart = localStorage.getItem("cart");
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
+    if(savedCart){
+      return JSON.parse(savedCart)
+    }
+     return  []
+  });  
+  
+  const increaseQuantity = (item) =>{
+        const updatedCart = cart.map((cartItem) => {
+          if (cartItem.id === item.id) {
+            return {...cartItem, quantity :quantity + 1}
+          }else{
+            return cartItem
+          }
+        })
+        setCart(updatedCart)
+        localStorage.setItem("cart",JSON.stringify(updatedCart))
+  }
 
-  // Function to increase quantity of item in cart
-  const increaseQuantity = (item) => {
-    const updatedCart = cart.map((cartItem) =>
-      cartItem.id === item.id
-        ? { ...cartItem, quantity: cartItem.quantity + 1 }
-        : cartItem
-    );
-    setCart(updatedCart); // Update state
-    localStorage.setItem("cart", JSON.stringify(updatedCart)); // Update localStorage
-  };
 
-  // Function to decrease quantity of item in cart
   const decreaseQuantity = (item) => {
     if (item.quantity > 1) {
       const updatedCart = cart.map((cartItem) =>
@@ -33,29 +37,28 @@ const Cart = () => {
     }
   };
 
-  // Function to calculate total price of items in the cart
+
   const calculateTotal = () => {
     let total = 0;
     cart.forEach((item) => {
       total += item.price * item.quantity;
     });
-    return total.toFixed(2); // Format to 2 decimal places
+    return total.toFixed(2); //  to 2 decimal places
   };
 
-  // Function to delete item from cart
   const deleteHandler = (itemToDelete) => {
     const updatedCart = cart.filter((item) => item.id !== itemToDelete.id);
     setCart(updatedCart); // Update state
     localStorage.setItem("cart", JSON.stringify(updatedCart)); // Update localStorage
   };
 
-  // Function to clear the entire cart
+
   const clearHandler = () => {
     setCart([]); // Clear cart state
     localStorage.removeItem("cart"); // Remove cart from localStorage
   };
 
-  // If the cart is empty, display message
+  
   if (cart.length === 0) {
     return (
       <div className="w-full min-h-screen overflow-y-auto pt-36 bg-gray-100 p-5 flex flex-col items-center">
@@ -140,6 +143,7 @@ const Cart = () => {
             Continue Shopping
           </button>
         </a>
+        <div>{Message}</div>
       </div>
     </div>
   );
