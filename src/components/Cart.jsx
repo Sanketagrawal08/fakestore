@@ -143,7 +143,6 @@ const Cart = () => {
             Continue Shopping
           </button>
         </a>
-        <div>{Message}</div>
       </div>
     </div>
   );
