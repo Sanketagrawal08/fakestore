@@ -15,7 +15,7 @@ const Cart = () => {
   const increaseQuantity = (item) =>{
         const updatedCart = cart.map((cartItem) => {
           if (cartItem.id === item.id) {
-            return {...cartItem, quantity :quantity + 1}
+            return {...cartItem, quantity : cartItem.quantity + 1}
           }else{
             return cartItem
           }
